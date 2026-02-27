@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mortal</title><link>https://mortalkit.github.io/</link><description>Recent content on Mortal</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mortal © 2026</copyright><lastBuildDate>Fri, 27 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://mortalkit.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://mortalkit.github.io/about/</link><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate><guid>https://mortalkit.github.io/about/</guid><description>&lt;h1 id="关于我"&gt;关于我
+&lt;/h1&gt;&lt;p&gt;你好，我是 mortalkit，一名嵌入式开发爱好者。&lt;/p&gt;
+&lt;h2 id="我的技术栈"&gt;我的技术栈
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;STM32/ESP32 开发&lt;/li&gt;
+&lt;li&gt;C/C++ 编程语言&lt;/li&gt;
+&lt;li&gt;FreeRTOS 实时操作系统&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="联系方式"&gt;联系方式
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;邮箱：2798747241@qq.com&lt;/li&gt;
+&lt;li&gt;GitHub：https://github.com/mortalkit&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Archives</title><link>https://mortalkit.github.io/archives/</link><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate><guid>https://mortalkit.github.io/archives/</guid><description/></item><item><title>Rich Content</title><link>https://mortalkit.github.io/p/rich-content/</link><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate><guid>https://mortalkit.github.io/p/rich-content/</guid><description/></item><item><title>Links</title><link>https://mortalkit.github.io/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://mortalkit.github.io/links/</guid><description>&lt;h3 id="友情链接说明"&gt;友情链接说明
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;新增友链：复制上方 &lt;code&gt;links&lt;/code&gt; 下的模板块，修改 title/description/website/image 即可；&lt;/li&gt;
+&lt;li&gt;图片使用规则：
+&lt;ul&gt;
+&lt;li&gt;本地图片：放在博客根目录 &lt;code&gt;static/images/&lt;/code&gt; 下，路径写 &lt;code&gt;/images/文件名.png&lt;/code&gt;（必须以 / 开头）；&lt;/li&gt;
+&lt;li&gt;外部图片：直接填写完整URL（如 &lt;a class="link" href="https://xxx.com/logo.png" target="_blank" rel="noopener"
+&gt;https://xxx.com/logo.png&lt;/a&gt;）；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;避免报错：不要留空的 image 字段，也不要引用不存在的本地图片/外部链接。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="示例配置参考"&gt;示例配置（参考）
+&lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;links&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;我的GitHub&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;嵌入式开发项目代码仓库&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;website&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;https://github.com/mortalkit&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>Search</title><link>https://mortalkit.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://mortalkit.github.io/search/</guid><description/></item></channel></rss>
