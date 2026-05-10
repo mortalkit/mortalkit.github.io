@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Claude on Mortal</title><link>https://mortalkit.github.io/tags/claude/</link><description>Recent content in Claude on Mortal</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mortal © 2026</copyright><lastBuildDate>Sat, 28 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://mortalkit.github.io/tags/claude/index.xml" rel="self" type="application/rss+xml"/><item><title>claude</title><link>https://mortalkit.github.io/p/claude/</link><pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate><guid>https://mortalkit.github.io/p/claude/</guid><description>&lt;h1 id="准备软件"&gt;准备软件
+&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;nodejs 点击release下载windows版本&lt;/li&gt;
+&lt;li&gt;下载cc-switch(用来接入deepseek的api) 在github上搜索cc-switch即可，下载Windows版本&lt;/li&gt;
+&lt;li&gt;切换国内镜像 &lt;code&gt;npm config set registry https://registry.npmmirror.com/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;下载git&lt;/li&gt;
+&lt;li&gt;分别输入 &lt;code&gt;npm -v&lt;/code&gt; &lt;code&gt;git -v&lt;/code&gt; &lt;code&gt;node -v&lt;/code&gt;检查是否安装成功&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="安装claude"&gt;安装claude
+&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;输入 &lt;code&gt;npm install -g @anthropic-ai/claude-code&lt;/code&gt; 安装&lt;/li&gt;
+&lt;li&gt;检查版本 &lt;code&gt;claude --version&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在用户下找到claude.json文件夹，在最后添加上 &lt;code&gt;&amp;quot;hasCompletedOnboarding&amp;quot;: true&lt;/code&gt; 来跳过登录&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="添加api"&gt;添加api
+&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;在deepseek官网注册api，并且保证有一点钱&lt;/li&gt;
+&lt;li&gt;添加密钥（记得复制保存，关闭就看不到了）&lt;/li&gt;
+&lt;li&gt;打开cc-switch软件，点击有添加，随后选择deepseek&lt;/li&gt;
+&lt;li&gt;输入之前的api以及修改下面所有模型为 &lt;code&gt;deepseek-v4-pro[1m]&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="验证"&gt;验证
+&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;打开cmd，输入claude，认可该文件夹，随后询问他是什么模型，回答和上述相同即安装成功&lt;/li&gt;
+&lt;/ol&gt;</description></item></channel></rss>
