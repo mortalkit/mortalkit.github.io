@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Claude Code on Mortal</title><link>https://mortalkit.github.io/tags/claude-code/</link><description>Recent content in Claude Code on Mortal</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mortal © 2026</copyright><lastBuildDate>Sat, 16 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://mortalkit.github.io/tags/claude-code/index.xml" rel="self" type="application/rss+xml"/><item><title>Claude Code 安装与 DeepSeek API 接入教程</title><link>https://mortalkit.github.io/p/claude-code-%E5%AE%89%E8%A3%85%E4%B8%8E-deepseek-api-%E6%8E%A5%E5%85%A5%E6%95%99%E7%A8%8B/</link><pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate><guid>https://mortalkit.github.io/p/claude-code-%E5%AE%89%E8%A3%85%E4%B8%8E-deepseek-api-%E6%8E%A5%E5%85%A5%E6%95%99%E7%A8%8B/</guid><description>&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;Claude Code 是 Anthropic 推出的命令行 AI 编程助手，配合 DeepSeek V4 模型可以大幅降低使用成本。本教程记录 Windows 平台下从零安装到成功使用的全过程。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="一环境准备"&gt;一、环境准备
+&lt;/h2&gt;&lt;h3 id="11-所需软件"&gt;1.1 所需软件
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;软件&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;th&gt;下载地址&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Node.js&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Claude Code 运行环境&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://nodejs.org" target="_blank" rel="noopener"
+&gt;nodejs.org&lt;/a&gt; → 点击 Releases 下载 Windows 版本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;cc-switch&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;API 代理切换工具，用于接入 DeepSeek&lt;/td&gt;
+&lt;td&gt;GitHub 搜索 &lt;code&gt;cc-switch&lt;/code&gt;，下载 Windows 版本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Git&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;版本管理（Claude Code 依赖）&lt;/td&gt;
+&lt;td&gt;&lt;a class="link" href="https://git-scm.com" target="_blank" rel="noopener"
+&gt;git-scm.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="12-配置-npm-国内镜像"&gt;1.2 配置 npm 国内镜像
+&lt;/h3&gt;&lt;p&gt;由于 npm 默认源在国内访问较慢，先切换到国内镜像：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm config &lt;span class="nb"&gt;set&lt;/span&gt; registry https://registry.npmmirror.com/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="13-验证安装"&gt;1.3 验证安装
+&lt;/h3&gt;&lt;p&gt;安装完上述软件后，在终端中分别执行以下命令，确认均有版本号输出：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;node -v &lt;span class="c1"&gt;# 应输出 v20.x 或更高&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm -v &lt;span class="c1"&gt;# 应输出 10.x 或更高&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git -v &lt;span class="c1"&gt;# 应输出 git version 2.x&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src="https://mortalkit.github.io/images/claude/check-version.png"
+loading="lazy"
+alt="环境验证截图"
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="二安装-claude-code"&gt;二、安装 Claude Code
+&lt;/h2&gt;&lt;h3 id="21-全局安装"&gt;2.1 全局安装
+&lt;/h3&gt;&lt;p&gt;打开终端（CMD 或 PowerShell），执行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm install -g @anthropic-ai/claude-code
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="22-验证安装"&gt;2.2 验证安装
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;claude --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;有版本号输出即表示安装成功。&lt;/p&gt;
+&lt;h3 id="23-跳过登录验证"&gt;2.3 跳过登录验证
+&lt;/h3&gt;&lt;p&gt;Claude Code 默认要求登录 Anthropic 账号。我们通过 DeepSeek API 接入，不需要登录，直接修改配置文件跳过：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开文件资源管理器，在地址栏输入 &lt;code&gt;%USERPROFILE%&lt;/code&gt; 回车&lt;/li&gt;
+&lt;li&gt;找到 &lt;code&gt;.claude&lt;/code&gt; &lt;strong&gt;文件夹&lt;/strong&gt;（注意：是 &lt;code&gt;.claude&lt;/code&gt; 文件夹，不是 &lt;code&gt;claude.json&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;进入 &lt;code&gt;.claude&lt;/code&gt; 文件夹，找到 &lt;code&gt;claude.json&lt;/code&gt; 文件&lt;/li&gt;
+&lt;li&gt;在文件末尾添加 &lt;code&gt;&amp;quot;hasCompletedOnboarding&amp;quot;: true&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;关键修正&lt;/strong&gt;：很多教程误写成&amp;quot;claude.json 文件夹&amp;quot;，实际上是用户目录下的 &lt;strong&gt;&lt;code&gt;.claude&lt;/code&gt; 文件夹&lt;/strong&gt;，里面有 &lt;code&gt;claude.json&lt;/code&gt; 配置文件。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;修改后的 &lt;code&gt;claude.json&lt;/code&gt; 示例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;hasCompletedOnboarding&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src="https://mortalkit.github.io/images/claude/config-file.png"
+loading="lazy"
+alt="配置文件截图"
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="三接入-deepseek-api"&gt;三、接入 DeepSeek API
+&lt;/h2&gt;&lt;h3 id="31-注册并获取-api-key"&gt;3.1 注册并获取 API Key
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;访问 &lt;a class="link" href="https://platform.deepseek.com" target="_blank" rel="noopener"
+&gt;DeepSeek 开放平台&lt;/a&gt; 注册账号&lt;/li&gt;
+&lt;li&gt;进入 &lt;strong&gt;API Keys&lt;/strong&gt; 页面，点击 &lt;strong&gt;创建 API Key&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;为 Key 命名（如 &lt;code&gt;claude-code&lt;/code&gt;），创建后&lt;strong&gt;立即复制保存&lt;/strong&gt;——关闭弹窗后将无法再次查看&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;确保账户内有一定余额（最低充值通常 ¥10 即可使用很久）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="32-配置-cc-switch"&gt;3.2 配置 cc-switch
+&lt;/h3&gt;&lt;p&gt;cc-switch 是一个开源的 API 代理工具，负责将 Claude Code 的 Anthropic API 请求转发到 DeepSeek 的 API 端点。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;下载并启动 cc-switch（Windows 版本）&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;添加&lt;/strong&gt; 按钮&lt;/li&gt;
+&lt;li&gt;选择 &lt;strong&gt;DeepSeek&lt;/strong&gt; 作为后端&lt;/li&gt;
+&lt;li&gt;填入之前复制的 &lt;strong&gt;API Key&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;将所有模型名称修改为：&lt;code&gt;deepseek-v4-pro[1m]&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://mortalkit.github.io/images/claude/cc-switch.png"
+loading="lazy"
+alt="cc-switch配置截图"
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;为什么用 cc-switch？&lt;/strong&gt; Claude Code 默认调用 Anthropic 官方 API，费用较高。cc-switch 在本地拦截请求并转发到 DeepSeek，让你用 DeepSeek 的价格享受 Claude Code 的交互体验。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="四验证使用"&gt;四、验证使用
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;打开终端，输入 &lt;code&gt;claude&lt;/code&gt; 启动&lt;/li&gt;
+&lt;li&gt;首次启动会要求选择工作目录，选择你常用的代码目录即可&lt;/li&gt;
+&lt;li&gt;进入对话后，询问：&lt;strong&gt;&amp;ldquo;你是什么模型？&amp;rdquo;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;若回答为 &lt;code&gt;deepseek-v4-pro[1m]&lt;/code&gt;，说明接入成功&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 启动 Claude Code&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;claude
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 进入后在对话中输入&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;你是什么模型？
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="五常见问题"&gt;五、常见问题
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;问题&lt;/th&gt;
+&lt;th&gt;可能原因&lt;/th&gt;
+&lt;th&gt;解决方案&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;claude&lt;/code&gt; 命令不存在&lt;/td&gt;
+&lt;td&gt;npm 全局安装路径未加入 PATH&lt;/td&gt;
+&lt;td&gt;将 &lt;code&gt;%APPDATA%\npm&lt;/code&gt; 加入系统环境变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;cc-switch 连接失败&lt;/td&gt;
+&lt;td&gt;API Key 无效或余额不足&lt;/td&gt;
+&lt;td&gt;检查 DeepSeek 平台的 API Key 状态和余额&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;模型回答不是 DeepSeek&lt;/td&gt;
+&lt;td&gt;cc-switch 未正确拦截&lt;/td&gt;
+&lt;td&gt;检查 cc-switch 是否在运行，模型名是否配置正确&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;安装卡在 &lt;code&gt;npm install&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;npm 源连接慢&lt;/td&gt;
+&lt;td&gt;确认已切换国内镜像源&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="总结"&gt;总结
+&lt;/h2&gt;&lt;p&gt;整个流程概括为四步：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;装环境&lt;/strong&gt; — Node.js + Git + cc-switch&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;装 Claude Code&lt;/strong&gt; — &lt;code&gt;npm install -g&lt;/code&gt; + 跳过登录&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;接 API&lt;/strong&gt; — DeepSeek 注册 + cc-switch 配置&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;验证&lt;/strong&gt; — 启动对话，确认模型正确&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;配置完成后即可在终端内享受 AI 辅助编程，使用体验与官方 Claude Code 一致，但成本仅为 DeepSeek API 的调用费用。&lt;/p&gt;</description></item></channel></rss>
