@@ -86,7 +86,7 @@ alt="环境验证截图"
 &lt;ol&gt;
 &lt;li&gt;打开文件资源管理器，在地址栏输入 &lt;code&gt;%USERPROFILE%&lt;/code&gt; 回车&lt;/li&gt;
 &lt;li&gt;找到 &lt;code&gt;.claude&lt;/code&gt; &lt;strong&gt;文件夹&lt;/strong&gt;（注意：是 &lt;code&gt;.claude&lt;/code&gt; 文件夹，不是 &lt;code&gt;claude.json&lt;/code&gt;）&lt;/li&gt;
-&lt;li&gt;进入 &lt;code&gt;.claude&lt;/code&gt; 文件夹，找到 &lt;code&gt;claude.json&lt;/code&gt; 文件&lt;/li&gt;
+&lt;li&gt;进入 &lt;code&gt;.claude&lt;/code&gt; 文件夹，找到 &lt;code&gt;setting.json&lt;/code&gt; 文件&lt;/li&gt;
 &lt;li&gt;在文件末尾添加 &lt;code&gt;&amp;quot;hasCompletedOnboarding&amp;quot;: true&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
